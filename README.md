@@ -138,13 +138,14 @@ jupyter notebook Inpainting.ipynb
 ---
 
 ## 📁 Project Structure
-📦 image-inpainting-eurosat-DL-Course
-┣ 📓 Inpainting.ipynb      ← Full pipeline: data, masking, model, training, visualisation
-┣ 📄 requirements.txt      ← Python dependencies
-┣ 📄 LICENSE               ← MIT License
-┣ 📄 CITATION.cff          ← How to cite this work
-┗ 📝 README.md
----
+
+| File | Description |
+|------|-------------|
+| `Inpainting.ipynb` | Full pipeline: data, masking, model, training, visualisation |
+| `requirements.txt` | Python dependencies |
+| `LICENSE` | MIT License |
+| `CITATION.cff` | How to cite this work |
+| `README.md` | Project documentation |
 
 ## 🔮 Future Work
 
