@@ -1,48 +1,67 @@
-# Image Inpainting using EuroSAT Dataset
+<div align="center">
 
-## Project Overview
-This project focuses on image inpainting, which consists of reconstructing missing or deteriorated parts of an image.
+# 🛰️ Image Inpainting on EuroSAT Satellite Imagery
+### Deep Learning-Based Reconstruction of Masked Regions in Sentinel-2 RGB Images
 
-The goal is to train a deep learning model capable of restoring masked regions of satellite images.
+[![Python](https://img.shields.io/badge/Python-3.8%2B-3776AB?style=for-the-badge&logo=python&logoColor=white)](https://python.org)
+[![TensorFlow](https://img.shields.io/badge/TensorFlow-FF6F00?style=for-the-badge&logo=tensorflow&logoColor=white)](https://tensorflow.org)
+[![Jupyter](https://img.shields.io/badge/Jupyter-F37626?style=for-the-badge&logo=jupyter&logoColor=white)](https://jupyter.org)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg?style=for-the-badge)](https://opensource.org/licenses/MIT)
 
-## Dataset
-The dataset used is the TensorFlow EuroSAT RGB dataset based on Sentinel-2 satellite images.
+<p align="center">
+  <img src="https://img.shields.io/badge/Dataset-EuroSAT%20RGB-blue?style=flat-square"/>
+  <img src="https://img.shields.io/badge/Images-27%2C000-green?style=flat-square"/>
+  <img src="https://img.shields.io/badge/Resolution-64x64-orange?style=flat-square"/>
+</p>
 
-- Total images: 27,000
-- Image size: 64x64
-- Channels: RGB
+*A deep learning model that reconstructs missing or corrupted regions in satellite images using the EuroSAT RGB dataset.*
 
-A random portion of each image is masked following the procedure described in the assignment notebook.
+</div>
 
-## Methodology
-The project includes:
+---
 
-- Data loading and preprocessing
-- Random masking of image regions
-- Model architecture design
-- Training procedure
-- Reconstruction of masked images
-- Visualization of results
+## 📋 Table of Contents
 
-## Results
-The trained model successfully reconstructs missing image regions with visually consistent outputs.
+- [Overview](#-overview)
+- [Dataset](#-dataset)
+- [Methodology](#-methodology)
+- [Model Architecture](#-model-architecture)
+- [Results](#-results)
+- [Getting Started](#-getting-started)
+- [Project Structure](#-project-structure)
+- [Future Work](#-future-work)
+- [References](#-references)
+- [Author](#-author)
 
-Example outputs and comparisons between original, masked, and reconstructed images are included in the notebook.
+---
 
-## File Structure
-- `Inpainting.ipynb` → Complete implementation of the project
+## 🔬 Overview
 
-## Requirements
-- Python 3.x
-- TensorFlow
-- NumPy
-- Matplotlib
+Image inpainting is the task of reconstructing missing, masked, or corrupted regions of an image in a visually plausible and semantically consistent way. This project applies inpainting to **satellite remote sensing imagery**, using the EuroSAT RGB dataset derived from ESA Sentinel-2 observations.
 
-## Author
-Farhad Bayrami
+The model learns to restore randomly masked regions of land-use satellite images — a technique with practical applications in:
+- Cloud removal from satellite imagery
+- Restoration of corrupted remote sensing data
+- Data augmentation for downstream classification tasks
 
-## Course
-Deep Learning
+---
 
-## Submission Date
-February 2023
+## 📦 Dataset
+
+**EuroSAT RGB** — via TensorFlow Datasets, based on ESA Sentinel-2 satellite imagery.
+
+| Property        | Value             |
+|-----------------|-------------------|
+| Total images    | 27,000            |
+| Image size      | 64 × 64 pixels    |
+| Channels        | RGB               |
+| Land-use classes| 10                |
+| Source          | Sentinel-2 (ESA)  |
+
+A random rectangular region of each image is masked during preprocessing, following the procedure described in the assignment notebook.
+
+> 💡 The dataset is loaded directly via `tensorflow_datasets` — no manual download required.
+
+---
+
+## ⚙️ Methodology

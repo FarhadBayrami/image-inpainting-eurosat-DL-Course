@@ -1,0 +1,20 @@
+cff-version: 1.2.0
+message: "If you use this code in your research, please cite it as below."
+authors:
+  - family-names: Bayrami
+    given-names: Farhad
+    email: farhad.bayrami@studio.unibo.it
+    affiliation: University of Bologna
+title: "Image Inpainting on EuroSAT RGB Dataset using Deep Learning"
+version: 1.0.0
+date-released: 2025-02-01
+url: "https://github.com/FarhadBayrami/image-inpainting-eurosat-DL-Course"
+license: MIT
+keywords:
+  - deep learning
+  - image inpainting
+  - satellite imagery
+  - EuroSAT
+  - TensorFlow
+  - remote sensing
+  - Sentinel-2
