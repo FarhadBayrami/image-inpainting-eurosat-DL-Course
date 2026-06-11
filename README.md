@@ -50,13 +50,13 @@ The model learns to restore randomly masked regions of land-use satellite images
 
 **EuroSAT RGB** — via TensorFlow Datasets, based on ESA Sentinel-2 satellite imagery.
 
-| Property        | Value             |
-|-----------------|-------------------|
-| Total images    | 27,000            |
-| Image size      | 64 × 64 pixels    |
-| Channels        | RGB               |
-| Land-use classes| 10                |
-| Source          | Sentinel-2 (ESA)  |
+| Property         | Value             |
+|------------------|-------------------|
+| Total images     | 27,000            |
+| Image size       | 64 × 64 pixels    |
+| Channels         | RGB               |
+| Land-use classes | 10                |
+| Source           | Sentinel-2 (ESA)  |
 
 A random rectangular region of each image is masked during preprocessing, following the procedure described in the assignment notebook.
 
@@ -65,3 +65,114 @@ A random rectangular region of each image is masked during preprocessing, follow
 ---
 
 ## ⚙️ Methodology
+Original Image (64×64 RGB)
+│
+┌────▼────────┐
+│ Random Mask │  ← Rectangular region zeroed out
+└────┬────────┘
+│
+┌────▼──────────────┐
+│  Encoder (Conv2D) │  ← Extracts features from visible regions
+└────┬──────────────┘
+│
+┌────▼──────────────────┐
+│  Bottleneck (Latent)  │  ← Compressed representation
+└────┬──────────────────┘
+│
+┌────▼──────────────────────┐
+│  Decoder (Conv2DTranspose)│  ← Reconstructs full image
+└────┬──────────────────────┘
+│
+Reconstructed Image (64×64 RGB)
+**Pipeline steps:**
+1. Load and normalise EuroSAT RGB images
+2. Apply random rectangular masks to each image
+3. Train encoder-decoder model to reconstruct masked regions
+4. Evaluate visually by comparing original, masked, and reconstructed outputs
+
+---
+
+## 🧠 Model Architecture
+
+| Component     | Details                                      |
+|---------------|----------------------------------------------|
+| Architecture  | Convolutional Encoder-Decoder (U-Net style)  |
+| Loss Function | Mean Squared Error (MSE)                     |
+| Optimizer     | Adam                                         |
+| Input size    | 64 × 64 × 3                                  |
+| Framework     | TensorFlow / Keras                           |
+| Hardware      | GPU recommended (Colab/Jupyter)              |
+
+---
+
+## 📊 Results
+
+The trained model successfully reconstructs missing image regions with visually consistent outputs. Example outputs — including side-by-side comparisons of original, masked, and reconstructed images — are included in the notebook.
+
+---
+
+## 🚀 Getting Started
+
+### Prerequisites
+
+```bash
+pip install -r requirements.txt
+```
+
+### Run
+
+```bash
+# 1. Clone the repository
+git clone https://github.com/FarhadBayrami/image-inpainting-eurosat-DL-Course.git
+cd image-inpainting-eurosat-DL-Course
+
+# 2. Install dependencies
+pip install -r requirements.txt
+
+# 3. Launch the notebook
+jupyter notebook Inpainting.ipynb
+```
+
+> 💡 **Tip:** The EuroSAT dataset loads automatically via `tensorflow_datasets` — no manual download needed. For faster training use Google Colab: *Runtime → Change runtime type → GPU*.
+
+---
+
+## 📁 Project Structure
+📦 image-inpainting-eurosat-DL-Course
+┣ 📓 Inpainting.ipynb      ← Full pipeline: data, masking, model, training, visualisation
+┣ 📄 requirements.txt      ← Python dependencies
+┣ 📄 LICENSE               ← MIT License
+┣ 📄 CITATION.cff          ← How to cite this work
+┗ 📝 README.md
+---
+
+## 🔮 Future Work
+
+- [ ] Experiment with U-Net skip connections for sharper reconstructions
+- [ ] Apply irregular/free-form masks (more realistic than rectangular)
+- [ ] Add perceptual loss (VGG-based) alongside MSE
+- [ ] Extend to multispectral (13-band) EuroSAT data
+- [ ] Evaluate on cloud-removal benchmarks (SEN2-MTC, RICE dataset)
+
+---
+
+## 📚 References
+
+1. Helber, P. et al. — *EuroSAT: A Novel Dataset and Deep Learning Benchmark for Land Use and Land Cover Classification*, IEEE JSTARS, 2019.
+2. Pathak, D. et al. — *Context Encoders: Feature Learning by Inpainting*, CVPR, 2016.
+3. ESA Sentinel-2 Mission — [sentinel.esa.int](https://sentinel.esa.int/web/sentinel/missions/sentinel-2)
+
+---
+
+## 👤 Author
+
+**Farhad Bayrami**
+MSc Student — University of Bologna
+📧 [farhad.bayrami@studio.unibo.it](mailto:farhad.bayrami@studio.unibo.it)
+🔗 [GitHub](https://github.com/FarhadBayrami)
+
+---
+
+<div align="center">
+  <sub>Built with ❤️ as part of a Deep Learning course project at the University of Bologna · February 2025</sub>
+</div>
