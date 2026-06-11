@@ -65,31 +65,21 @@ A random rectangular region of each image is masked during preprocessing, follow
 ---
 
 ## ⚙️ Methodology
-Original Image (64×64 RGB)
-│
-┌────▼────────┐
-│ Random Mask │  ← Rectangular region zeroed out
-└────┬────────┘
-│
-┌────▼──────────────┐
-│  Encoder (Conv2D) │  ← Extracts features from visible regions
-└────┬──────────────┘
-│
-┌────▼──────────────────┐
-│  Bottleneck (Latent)  │  ← Compressed representation
-└────┬──────────────────┘
-│
-┌────▼──────────────────────┐
-│  Decoder (Conv2DTranspose)│  ← Reconstructs full image
-└────┬──────────────────────┘
-│
-Reconstructed Image (64×64 RGB)
+
+| Step | Component | Description |
+|------|-----------|-------------|
+| 1 | **Input** | Original image (64×64 RGB) |
+| 2 | **Random Mask** | Rectangular region zeroed out |
+| 3 | **Encoder (Conv2D)** | Extracts features from visible regions |
+| 4 | **Bottleneck (Latent)** | Compressed representation |
+| 5 | **Decoder (Conv2DTranspose)** | Reconstructs full image |
+| 6 | **Output** | Reconstructed image (64×64 RGB) |
+
 **Pipeline steps:**
 1. Load and normalise EuroSAT RGB images
 2. Apply random rectangular masks to each image
 3. Train encoder-decoder model to reconstruct masked regions
 4. Evaluate visually by comparing original, masked, and reconstructed outputs
-
 ---
 
 ## 🧠 Model Architecture
